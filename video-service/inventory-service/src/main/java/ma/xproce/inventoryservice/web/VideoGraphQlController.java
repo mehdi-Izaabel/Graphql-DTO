@@ -8,6 +8,7 @@ import ma.xproce.inventoryservice.mappers.CreatorDTOMapper;
 import ma.xproce.inventoryservice.mappers.VideoDTOMapper;
 import ma.xproce.inventoryservice.repositories.CreatorRepository;
 import ma.xproce.inventoryservice.repositories.VideoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
@@ -21,9 +22,12 @@ public class VideoGraphQlController {
     private VideoRepository videoRepository;
     private CreatorDTOMapper creatorDTOMapper;
     private VideoDTOMapper videoDTOMapper;
-    VideoGraphQlController(CreatorRepository creatorRepository, VideoRepository videoRepository) {
+    @Autowired
+    VideoGraphQlController(CreatorRepository creatorRepository, VideoRepository videoRepository, CreatorDTOMapper creatorDTOMapper, VideoDTOMapper videoDTOMapper) {
         this.creatorRepository = creatorRepository;
         this.videoRepository = videoRepository;
+        this.creatorDTOMapper = creatorDTOMapper;
+        this.videoDTOMapper = videoDTOMapper;
     }
 
     @QueryMapping
